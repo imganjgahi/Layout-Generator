@@ -2,27 +2,64 @@ import * as React from 'react';
 
 export interface IProps {
     currentLayout: string
-} 
- 
-class Container extends React.Component<IProps> {
+}
 
-    componentDidUpdate(prevProps: IProps){
-        if(prevProps.currentLayout !== this.props.currentLayout){
-            console.log( "currentLayout: ", this.props.currentLayout)
+interface IState {
+    layouts: JSX.Element[]
+}
+
+class Container extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
+        super(props);
+        this.state = {
+            layouts: []
         }
     }
-    render() { 
-        return ( 
+    componentDidUpdate(prevProps: IProps) {
+        if (prevProps.currentLayout !== this.props.currentLayout) {
+            const newLayouts: JSX.Element[] = []
+            const layouts = this.props.currentLayout.split("/");
+
+            //loop in layout array after split it
+            layouts.forEach((targetLayout) => {
+                //search for charcters in target string
+                const layoutType = /[a-z]/i.exec(targetLayout)
+
+                //check if it has amount or not
+                const hasAmount = targetLayout.search(/[0-9]/)
+
+                //minium amont for rendering the new layout
+                let amount = 1;
+
+                // intial layout style class after pars string
+                const layoutClass: string = `layout ${targetLayout.slice(layoutType.index, targetLayout.length)}`;
+
+                // calculate for Repeating the element
+                if (hasAmount === 0) {
+                    amount = parseInt(targetLayout.slice(0, layoutType.index))
+                }
+
+                //push new layouts in array
+                for (let i = 0; i < amount; i++) {
+                    newLayouts.push(
+                        <div key={layoutClass + i} className={layoutClass}> layout {layoutClass}</div>
+                    )
+                }
+
+            });
+            //change state after initial new layout
+            this.setState({ layouts: newLayouts })
+        }
+    }
+    render() {
+        return (
 
             <div className="container">
-                <div className="layout XL"> layout XL </div>
-                <div className="layout XL"> layout XL </div>
-                <div className="layout L"> layout L </div>
-                <div className="layout SM"> layout SM </div>
-                <div className="layout SM"> layout SM </div>
+                {this.state.layouts.map(l => l)}
             </div>
-         );
+        );
     }
+
 }
- 
+
 export default Container;
