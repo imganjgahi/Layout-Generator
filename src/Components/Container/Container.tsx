@@ -42,7 +42,7 @@ class Container extends React.Component<IProps, IState> {
                     //push new layouts in array
                     for (let i = 0; i < amount; i++) {
                         newLayouts.push(
-                            <div key={layoutClass + i} className={layoutClass}> layout {layoutClass}</div>
+                            <div key={layoutClass + i} className={layoutClass}> {layoutClass}</div>
                         )
                     }
     

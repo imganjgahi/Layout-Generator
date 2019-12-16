@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-wrap: wrap;
-    background-color: #cdcdff;
     box-sizing: border-box;
 }
 .noLayout {
@@ -21,14 +20,17 @@
     &.XL {
         width: 100%;
         height: 50vh;
+        background-color: cornflowerblue;
     }
     &.L {
         width: 100%;
         height: 25vh;
+        background-color: yellowgreen;
     }
     &.SM {
         width: 50%;
         height: 25vh;
+        background-color: pink;
     }
 }
 

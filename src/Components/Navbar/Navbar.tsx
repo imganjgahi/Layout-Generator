@@ -6,8 +6,12 @@ interface IProps {
 
 
 export const Navbar = (props: IProps) => {
+    const [isChange, setIsChange] = React.useState(false)
     const onChangeHandler = (e: React.FormEvent<HTMLSelectElement>) => {
-            props.onSelectLayout(e.currentTarget.value)
+        if(!isChange){
+            setIsChange(true)
+        }
+        props.onSelectLayout(e.currentTarget.value)
     }
 
     return (
@@ -15,7 +19,7 @@ export const Navbar = (props: IProps) => {
             <h1 className="title">Layout Generator</h1>
             <select className="dropDown"
                 onChange={onChangeHandler}>
-                <option value=""> Choose a Layout </option>
+                {!isChange && <option value=""> Choose a Layout </option>}
                 <option value="XL"> XL </option>
                 <option value="2XL"> 2XL </option>
                 <option value="4L">4L </option>
