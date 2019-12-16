@@ -1,19 +1,12 @@
 import * as React from 'react';
 
 export interface IProps {
-    
-}
+    currentLayout: string
+} 
  
-export interface IState {
-    
-}
- 
-class Container extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-        this.state = {  };
-    }
+class Container extends React.Component<IProps> {
     render() { 
+        console.log( "currentLayout: ", this.props.currentLayout)
         return ( 
 
             <div className="container">

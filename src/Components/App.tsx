@@ -5,12 +5,12 @@ import Container from "./Container/Container";
 
 
 export const App = () => {
-
+    const [currentLayout, setCurrentLayout] = React.useState("")
 
     return (
         <React.Fragment>
-            <Navbar />
-            <Container />
+            <Navbar onSelectLayout={(layout: string) => setCurrentLayout(layout)} />
+            <Container currentLayout={currentLayout} />
         </React.Fragment>
     )
 };
