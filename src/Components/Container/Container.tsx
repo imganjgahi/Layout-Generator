@@ -5,15 +5,21 @@ export interface IProps {
 } 
  
 class Container extends React.Component<IProps> {
+
+    componentDidUpdate(prevProps: IProps){
+        if(prevProps.currentLayout !== this.props.currentLayout){
+            console.log( "currentLayout: ", this.props.currentLayout)
+        }
+    }
     render() { 
-        console.log( "currentLayout: ", this.props.currentLayout)
         return ( 
 
             <div className="container">
-                <div className="testLayout"> Container works </div>
-                <div className="testLayout"> Container works </div>
-                <div className="testLayout"> Container works </div>
-                <div className="testLayout"> Container works </div>
+                <div className="layout XL"> layout XL </div>
+                <div className="layout XL"> layout XL </div>
+                <div className="layout L"> layout L </div>
+                <div className="layout SM"> layout SM </div>
+                <div className="layout SM"> layout SM </div>
             </div>
          );
     }
