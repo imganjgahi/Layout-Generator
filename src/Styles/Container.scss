@@ -4,7 +4,16 @@
     background-color: #cdcdff;
     box-sizing: border-box;
 }
-
+.noLayout {
+	width: 500px;
+	margin: 140px auto;
+	text-align: center;
+	background-color: yellowgreen;
+	height: 40px;
+	padding-top: 20px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 3px #ccc;
+}
 .layout {
     border: 1px solid;
     padding: 5px;

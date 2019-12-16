@@ -7,9 +7,7 @@ interface IProps {
 
 export const Navbar = (props: IProps) => {
     const onChangeHandler = (e: React.FormEvent<HTMLSelectElement>) => {
-        if(e.currentTarget.value !==""){
             props.onSelectLayout(e.currentTarget.value)
-        }
     }
 
     return (
@@ -21,8 +19,8 @@ export const Navbar = (props: IProps) => {
                 <option value="XL"> XL </option>
                 <option value="2XL"> 2XL </option>
                 <option value="4L">4L </option>
-                <option value="XL/2L">XL/2L </option>
-                <option value="XL/L/22SM"> XL/L/22SM </option>
+                <option value="XL/2L">XL / 2L </option>
+                <option value="XL/L/2SM"> XL / L / 2SM </option>
             </select>
         </div>
     )
