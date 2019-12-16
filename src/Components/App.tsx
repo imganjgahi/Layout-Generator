@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Navbar } from "./Navbar/Navbar";
+import Container from "./Container/Container";
 
 
 
@@ -7,6 +8,9 @@ export const App = () => {
 
 
     return (
-        <Navbar />
+        <React.Fragment>
+            <Navbar />
+            <Container />
+        </React.Fragment>
     )
 };
