@@ -20,32 +20,35 @@ class Container extends React.Component<IProps, IState> {
             const newLayouts: JSX.Element[] = []
             const layouts = this.props.currentLayout.split("/");
             //loop in layout array after split it
-            if(layouts[0] !== ""){
+            if (layouts[0] !== "") {
                 layouts.forEach((targetLayout) => {
                     //search for charcters in target string
                     const layoutType = /[a-z]/i.exec(targetLayout)
-    
+
                     //check if it has amount or not
                     const hasAmount = targetLayout.search(/[0-9]/)
-    
+
                     //minium amont for rendering the new layout
                     let amount = 1;
-    
+
                     // intial layout style class after pars string
-                    const layoutClass: string = `layout ${targetLayout.slice(layoutType.index, targetLayout.length)}`;
-    
+                    const classType = targetLayout.slice(layoutType.index, targetLayout.length)
+                    const layoutClass: string = `layout ${classType}`;
+
                     // calculate for Repeating the element
                     if (hasAmount === 0) {
                         amount = parseInt(targetLayout.slice(0, layoutType.index))
                     }
-    
-                    //push new layouts in array
-                    for (let i = 0; i < amount; i++) {
-                        newLayouts.push(
-                            <div key={layoutClass + i} className={layoutClass}> {layoutClass}</div>
-                        )
+
+                    //check if it's a valid layout
+                    if (classType.match(/^(XL|SM|L)\b/i)) {
+                        //push new layouts in array
+                        for (let i = 0; i < amount; i++) {
+                            newLayouts.push(
+                                <div key={layoutClass + i} className={layoutClass}> {layoutClass}</div>
+                            )
+                        }
                     }
-    
                 });
             }
             //change state after initial new layout
@@ -53,7 +56,7 @@ class Container extends React.Component<IProps, IState> {
         }
     }
     render() {
-        if(this.state.layouts.length === 0 ) {
+        if (this.state.layouts.length === 0) {
             return <p className="noLayout">please choose a layout </p>
         }
         return (
